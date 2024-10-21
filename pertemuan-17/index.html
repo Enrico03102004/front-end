@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambil Data User</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Ambil Data User</h1>
+    <button id="fetchButton">Ambil Data User</button>
+    <script>
+        document.getElementById('fetchButton').addEventListener('click', ambilDataUser);
+
+        function ambilDataUser() {
+            axios.get("https://reqres.in/api/users")
+                .then(response => {
+                    // Menampilkan nama depan dan nama belakang dari setiap pengguna
+                    response.data.data.forEach(user => {
+                        console.log(`First Name: ${user.first_name}, Last Name: ${user.last_name}`);
+                    });
+                })
+                .catch(error => {
+                    // Menangani error jika permintaan gagal
+                    console.error('There was a problem with the axios request:', error);
+                });
+        }
+    </script>
+</body>
+</html>
